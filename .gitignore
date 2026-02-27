@@ -1,0 +1,15 @@
+# Obsidian - ignore everything first
+.obsidian/*
+
+# Then whitelist what should be synced
+!.obsidian/plugins/
+!.obsidian/plugins/**
+!.obsidian/community-plugins.json
+
+# OS
+.DS_Store
+Thumbs.db
+.trash/
+
+# Sync conflicts
+*.sync-conflict-*

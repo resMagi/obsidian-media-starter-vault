@@ -1,0 +1,18 @@
+views:
+  - type: cards
+    name: Readlist
+    filters:
+      and:
+        - file.folder.startsWith("Media DB/books")
+        - or:
+            - read == true
+    order:
+      - file.name
+      - author
+      - genre
+      - pages
+      - year
+      - personalRating
+    cardSize: 220
+    imageAspectRatio: 1.8
+    image: note.image

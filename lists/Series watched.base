@@ -1,0 +1,22 @@
+properties:
+  note.cover:
+    displayName: cover
+views:
+  - type: cards
+    name: Watched
+    filters:
+      and:
+        - file.folder.startsWith("Media DB/series")
+        - or:
+            - personalRating != 0
+            - watched == true
+    order:
+      - file.name
+      - director
+      - genre
+      - year
+      - rating
+    imageProperty: cover
+    imageAspectRatio: 1.55
+    image: note.image
+    cardSize: 250

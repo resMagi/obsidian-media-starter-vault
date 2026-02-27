@@ -1,0 +1,25 @@
+formulas:
+  Untitled: ""
+properties:
+  note.cover:
+    displayName: cover
+  note.genre:
+    displayName: genres
+views:
+  - type: cards
+    name: Watchlist
+    filters:
+      and:
+        - file.folder.startsWith("Media DB/series")
+        - personalRating == 0
+        - "!personalRating.isEmpty()"
+    order:
+      - title
+      - director
+      - year
+      - genres
+      - onlineRating
+    imageProperty: cover
+    imageAspectRatio: 1.55
+    image: note.image
+    cardSize: 250

@@ -1,0 +1,24 @@
+properties:
+  note.cover:
+    displayName: cover
+views:
+  - type: cards
+    name: Watched
+    filters:
+      and:
+        - file.folder.startsWith("Media DB/movies")
+        - or:
+            - personalRating != 0
+            - watched == true
+    order:
+      - file.name
+      - director
+      - actors
+      - year
+      - genres
+      - onlineRating
+      - personalRating
+    imageProperty: cover
+    imageAspectRatio: 1.55
+    image: note.image
+    cardSize: 250
