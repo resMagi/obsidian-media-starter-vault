@@ -8,13 +8,11 @@ cssclasses:
 ---
 
 ```dataviewjs
-// ── Fix block container alignment ────────────────────────
-dv.container.style.width = "100%"
-dv.container.style.maxWidth = "100%"
-dv.container.style.marginLeft = "0"
-dv.container.style.marginRight = "0"
+// ── Wrapper — keeps Obsidian's injected span outside our layout ───
+const wrapper = dv.container.createEl("div", { cls: "media-wrapper" })
+wrapper.style.width = "100%"
 
-// ── helpers ───────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────
 const isWatched   = p => p.watched && p.watched !== "" && p.watched !== false
 const isUnwatched = p => !isWatched(p)
 const isRead      = p => p.read && p.read !== "" && p.read !== false
@@ -24,19 +22,19 @@ const movies = dv.pages('"Media DB/movies"')
 const series = dv.pages('"Media DB/series"')
 const books  = dv.pages('"Media DB/books"')
 
-// ── stats row ─────────────────────────────────────────────
-const statsEl = dv.el("div", "", { cls: "media-stats-wrap" })
+// ── Stats row ─────────────────────────────────────────────────────
+const statsEl = wrapper.createEl("div", { cls: "media-stats-wrap" })
 for (const s of [
-  { icon: "🎬", label: "Movies", done: movies.filter(isWatched).length,  total: movies.length },
-  { icon: "📺", label: "Series", done: series.filter(isWatched).length,  total: series.length },
-  { icon: "📚", label: "Books",  done: books.filter(isRead).length,       total: books.length  },
+  { icon: "🎬", label: "Movies", done: movies.filter(isWatched).length, total: movies.length },
+  { icon: "📺", label: "Series", done: series.filter(isWatched).length, total: series.length },
+  { icon: "📚", label: "Books",  done: books.filter(isRead).length,      total: books.length  },
 ]) {
   const pill = statsEl.createEl("div", { cls: "media-stat-pill" })
   pill.innerHTML = `${s.icon} <strong>${s.done}</strong> watched · <strong>${s.total - s.done}</strong> to go · ${s.label}`
 }
 
-// ── main grid ─────────────────────────────────────────────
-const grid = dv.el("div", "", { cls: "media-main-grid" })
+// ── Main grid ─────────────────────────────────────────────────────
+const grid = wrapper.createEl("div", { cls: "media-main-grid" })
 
 function getGenres(pages) {
   const set = new Set()
