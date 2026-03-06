@@ -36,7 +36,7 @@ for (const s of [
   { icon: "📚", label: "Books",  done: books.filter(isRead).length,      total: books.length  },
 ]) {
   const pill = statsEl.createEl("div", { cls: "media-stat-pill" })
-  pill.innerHTML = `${s.icon} <strong>${s.done}</strong> watched · <strong>${s.total - s.done}</strong> to go · ${s.label}`
+  pill.innerHTML = `${s.icon} <strong>${s.done}</strong> ${s.label === "Books" ? "read" : "watched"} · <strong>${s.total - s.done}</strong> to go · ${s.label}`
 }
 
 // ── Shared helpers ────────────────────────────────────────────────
